@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap");
+
+:root{
+  --bg: #000000;
+  --card: #12151b;
+  --muted: #9aa3b2;
+  --text: #000000;
+  --accent: #dfedff;
+  --border: rgba(255,255,255,0.08);
+  --ring: rgba(106,169,255,0.35);
+  --radius-xl: 18px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --shadow-1: 0 8px 24px rgba(0,0,0,0.35);
+  --maxw: 1100px;
+}
+
+.place-root {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 800px at 15% -10%, #1a2230, transparent 60%),
+    radial-gradient(1000px 800px at 95% -15%, #162235, transparent 60%);
+}
+
+/* Layout framing */
+.place-root .page { padding: 24px; }
+.place-root .header { max-width: var(--maxw); margin: 0 auto 16px; }
+.place-root .title-xl { font-size: clamp(1.6rem, 2.2vw + 1rem, 2.2rem); font-weight: 700; }
+.place-root .link { color: var(--accent); text-decoration: none; }
+.place-root .link:hover { text-decoration: underline; }
+.place-root .coords { color: var(--muted); margin-top: 6px; }
+
+/* Cards */
+.place-root .card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-1);
+  backdrop-filter: blur(6px);
+}
+
+/* Photo */
+.place-root .photo-card { overflow: hidden; border-radius: var(--radius-xl); }
+.place-root .photo-wrap { aspect-ratio: 16/10; width: 100%; background: #0c0f14; }
+.place-root .photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Grid */
+.place-root .detail-grid {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 980px) {
+  .place-root .detail-grid { grid-template-columns: 1fr; }
+}
+
+/* Sections */
+.place-root .section { padding: 18px; border-radius: var(--radius-xl); }
+.place-root .section-heading { font-size: 1.05rem; font-weight: 700; margin: 2px 0 10px; }
+
+/* One-line label/value list */
+.place-root .meta-lines { display: grid; grid-auto-rows: minmax(40px, auto); }
+.place-root .meta-row {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.place-root .meta-row:last-child { border-bottom: none; }
+.place-root .meta-label { white-space: nowrap; color: var(--muted); }
+.place-root .meta-label strong { color: var(--text); font-weight: 700; }
+.place-root .meta-value { white-space: pre-wrap; color: var(--text); }
+
+/* Aside */
+.place-root .aside { padding: 16px; border-radius: var(--radius-xl); }
+
+/* Top bar / back */
+.place-root .topbar {
+  max-width: var(--maxw);
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+}
+.place-root .back {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.02);
+  text-decoration: none;
+  color: var(--text);
+}
+.place-root .back:hover { background: rgba(255,255,255,0.05); }
+
+/* Simple stacks */
+.place-root .stack-12 > * + * { margin-top: 12px; }
+.place-root .stack-16 > * + * { margin-top: 16px; }
