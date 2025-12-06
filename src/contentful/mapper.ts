@@ -1,6 +1,18 @@
 import type { Place as CFPlace } from "../contentful/types";
 import type { Place as UIPlace } from "../types";
 
+// Helper to force Contentful images to browser-safe formats
+function optimizeContentfulImage(url: string | undefined): string | null {
+  if (!url) return null;
+
+  // Determine if we need '?' or '&' to start the query params
+  const separator = url.includes("?") ? "&" : "?";
+
+  // fm=jpg: Converts TIFF (and others) to JPEG
+  // fl=progressive: Loads the JPEG in "waves" (blur to sharp) for better UX
+  return `${url}${separator}fm=jpg&fl=progressive`;
+}
+
 export function mapCFPlaceToUI(p: CFPlace): UIPlace | null {
   if (!p) return null;
 
@@ -27,7 +39,10 @@ export function mapCFPlaceToUI(p: CFPlace): UIPlace | null {
     coverage: p.coverage ?? null,
     rights: p.rights ?? null,
     collection: p.collection ?? null,
-    photoUrl: p.primaryMedia?.url ?? null,
+    
+    // UPDATED: Now runs through the optimizer
+    photoUrl: optimizeContentfulImage(p.primaryMedia?.url),
+    
     latitude: lat,
     longitude: lon,
   };
